@@ -1,0 +1,98 @@
+# TALLER SÁBADO 7/11 - PRÁCTICO 10 - EJERCICIO 6
+
+open "C:\Users\dacza_000\Desktop\UdelaR\CCEEA\Semestre 6\Econometria I\Talleres\Taller 3\smoke.gdt"
+
+# SE PIDES 1 y 2
+
+# Estadísticos descriptivos
+
+"RESUMEN SIMPLE" <- summary --simple
+
+# Genero un dummy que vale 1 si el individuo fuma
+
+genr Dfuma = (cigs>0)
+freq Dfuma
+
+# Estadísticos según educación
+
+xtab Dfuma educ --column
+summary cigs --by=educ --simple
+
+# Estadísticos según ingreso
+
+xtab Dfuma income --column
+summary income --by=Dfuma
+
+# Matriz de correlaciones
+
+CORRS <- corr cigs lincome lcigpric educ age agesq restaurn
+
+# Regresión no robusta
+
+MODELO1 <- ols cigs const lincome lcigpric educ age agesq restaurn
+
+series resi=$uhat
+genr resi2=resi*resi
+series ygorro=$yhat
+genr ygorro2=ygorro*ygorro
+
+# Gráficos de resi contra ygorro
+
+ResiPred <- gnuplot resi ygorro
+ResiPred.show
+
+ResiPred2 <- gnuplot resi2 ygorro
+ResiPred2.show
+
+# Gráficos de resi contra regresores
+
+ResiPrice <- gnuplot resi lcigpric
+ResiPrice.show
+
+ResiEduc <- gnuplot resi educ
+ResiEduc.show
+
+ResiIncome <- gnuplot resi lincome
+ResiIncome.show
+
+# Contrastes para evaluar heteroscedasticidad
+
+# Breusch-Pagan. Consultar por errores robustos.
+
+MODELOAUX <- ols resi2 const lincome lcigpric educ age agesq restaurn
+
+scalar BP_lm=$trsq
+pvalue X 5 BP_lm
+
+# pvalor aprox 0, entonces RH0, por lo que existe evidencia de hetero
+
+# White
+
+ols cigs const lincome lcigpric educ age agesq restaurn --quiet
+modtest --white
+
+# White modif
+
+ols resi2 const ygorro ygorro2
+scalar WhiteM_lm =$trsq
+pvalue X 2 WhiteM_lm
+
+# alpha > pvalor, entonces rechazo H0
+
+# GQ
+
+dataset sortby income
+genr index
+smpl index < 269 --restrict
+
+ols 
+
+
+
+
+
+
+
+
+
+

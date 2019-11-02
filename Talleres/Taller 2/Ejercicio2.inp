@@ -1,0 +1,33 @@
+#Abrir la base cars
+
+#Obtener estadísticas de resumen de las variables y matriz de correlaciones
+
+#Graficar las variables millas contra galon de combustible por contra las posibles variables explicativas
+
+
+#Estimar el Mdelo 1 - mpg = b0 b1*cyl + b1*eng + b2*wgt 
+
+#Graficar los residuos contra las predicciones y otras variables explicativas 
+#Analizar significación individual y blobal del modelo.
+#Obtener los factores de incremento de la varianza
+
+#Que conclusiones puede extraer acerca del modelo?
+
+
+#Estimar Modelo 2 - Eliminar variables no significativas y reemplazar cyl por tres dummies para cada cilindrada
+
+
+#Analizar significación individual y blobal del modelo.
+#Inteprete los coeficientes de las variables significativas
+
+
+#Estimar el Modelo 3 - Incluye wgt y una variable que indique si el vehículo tiene 4 cilindros o no. 
+
+#Graficar los residuos contra las predicciones y otras variables explicativas 
+#Que ha sucedido con las propiedades del modelo respecto al Modelo 1. 
+
+
+
+
+
+
