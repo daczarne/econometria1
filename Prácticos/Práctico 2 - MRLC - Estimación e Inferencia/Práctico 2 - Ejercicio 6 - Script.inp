@@ -1,0 +1,106 @@
+# PRÁCTICO 2 - Ejercicio 6 - Aplicación en Gretl
+
+# Abro el archivo naftasGreene.gdt
+
+open "C:\Users\dacza_000\Desktop\UdelaR\CCEEA\Semestre 6\Econometria I\Prácticos\Práctico 2\naftas_Greene.gdt"
+
+# Parte a.
+
+# Restrinjo la base con el comando smpl.
+# La base abarca el periodo 1960 a 1995, es decir, tiene 36 observaciones.
+# Para tomar el periodo 61-86, me debo quedar con las obs. 2 a 27
+
+smpl 2 27
+
+# Parte b.
+
+# Corro la regresión G = Beta0 + Beta1*IPOIL + Beta2*IGRDISP
+
+ols G const IPOIL IGRDISP
+
+# Llamo los coefficientes
+
+genr beta1=$coeff(IPOIL)
+genr beta2=$coeff(IGRDISP)
+
+# Parte c.
+
+# Valor del R^2
+
+genr R2=$rsq
+
+# Valor del R^2_corregido:
+
+# Grados de libertad de la regresión y cantidad de regresores:
+
+genr k=$ncoeff
+genr n=$nobs
+
+# R^2_corregido:
+
+genr R2c=1-((n-1)/(n-k))*(1-R2)
+
+# La VAR(épsilon)=SCResi/(n-k)
+
+genr var_resi=$ess/(n-k)
+
+# Primero genero las varianzas de los resgresores:
+
+genr var_beta0=$stderr(const)^2
+genr var_beta1=$stderr(IPOIL)^2
+genr var_beta2=$stderr(IGRDISP)^2
+
+# Divido cada una de las varianzas de los regresores por la varianza de los 
+# errores, para generar los respectivos valores de la diagonal de (X'X)^-1
+
+genr a11=var_beta0/var_resi
+genr a22=var_beta1/var_resi
+genr a33=var_beta2/var_resi
+
+# Parte d.
+
+# Realizo el test H0) Betai = 0 versus H1) Betai ≠ 0 para un alpha = 0.05
+# La región crítica será: RC={muestras/|e_betai|>t23,0.975}
+
+genr t_23_0975=critical(t, 23, 0.025)
+genr e_beta1=abs(beta1/$stderr(IPOIL))
+
+# Dado que e_beta1 > t_23_0975 entonces rechazo H0, por lo que beta1 es 
+# significativo al 5%
+
+genr e_beta2=abs(beta2/$stderr(IGRDISP))
+
+# Dado que e_beta2 > t_23_0975 entonces rechazo H0, por lo que beta1 es 
+# significativo al 5%
+
+# Nótese que estas conslusiones coinciden con a las que se llegaría si se 
+# utilizara el p-valor de cada coeficiente
+
+# Parte e.
+
+# Los IC_95%_Betai = [ betai ± t_23_0975 * (var_betai)^(1/2) ]
+
+genr cota_inf_beta1= beta1-t_23_0975*sqrt(var_beta1)
+genr cota_sup_beta1= beta1+t_23_0975*sqrt(var_beta1)
+
+# el IC = [ -20.03 ; -11.92 ]
+# dado que 0 no pertenece al IC, se verifica el Rechazo de H0
+
+
+genr cota_inf_beta2=beta2-t_23_0975*sqrt(var_beta2)
+genr cota_sup_beta2=beta2+t_23_0975*sqrt(var_beta2)
+
+# el IC = [ 0.036 ; 0.043 ]
+# dado que 0 no pertenece al IC, se verifica el Rechazo de H0
+
+# Parte f.
+
+# Beta0: representa el G esperado cuando las de más variables son cero.
+
+# Beta1: implíca que por cada pto que aumente el IPOIL, se espera ver un caida
+# de USD 15.98 en el gasto de consumo total de naftas a valores constantes,
+# ceteris paribus. 
+
+# Beta2: implíca que por cada USD que aumenta el ingreso real disponible, se
+# espera que el gasto de consumo en naftas a valores constantes, aumente
+# en 0.039 dólares, ceteris paribus.

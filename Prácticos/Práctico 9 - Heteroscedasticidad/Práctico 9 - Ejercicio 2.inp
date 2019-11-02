@@ -1,0 +1,41 @@
+# PRÁCTICO 9 - EJERCICIO 2
+
+open "G:\UdelaR\CCEEA\Semestre 6\Econometria I\Prácticos\Práctico 9 - Heteroscedasticidad\alimentos.gdt"
+
+# PARTE a.
+
+ALIM <- gnuplot gto_alim ingreso
+
+ALIM.show
+
+# Comentario: no parece existir homoscedasticidad, dado que la distancia a la
+# recta de los distintos ptos varía mucho.
+
+# PARTE b. 
+
+"ALIM MCO" <- ols gto_alim const ingreso
+
+# Los beta son insesgados pero no eficientes
+
+# PARTE c.
+
+# Se entiende por MCP como la estimación que realizo ponderando cada variable 
+# por una matriz de pesos inversos a las varianzas.
+
+# Se utiliza el comando wls (weighted least squares)
+
+genr inverso_ingreso=1/ingreso
+
+"ALIM MCP" <- wls inverso_ingreso gto_alim const ingreso
+
+# PARTE d.
+
+# La estimación robusta implica utilizar el método porpuesto por White
+
+"ALIM ROBUSTO" <- ols gto_alim const ingreso --robust
+
+# FIN DE LA PROGRAMACIÓN #
+
+
+
+

@@ -1,0 +1,11 @@
+# PRÁCTICO 11 - REGRESORES ESTOCÁSTICOS
+
+open "C:\Users\dacza_000\Desktop\UdelaR\CCEEA\Semestre 6\Econometria I\Prácticos\Práctico 11 - Regresores estocásticos\Table_13.2.gdt"
+
+# Estimo el modelo sin errores de medición
+
+MODELO1 <- ols Ystar const Xstar
+
+# Estimo el modelo con errores de medición en el regresor
+
+MODELO2 <- ols Ystar const X

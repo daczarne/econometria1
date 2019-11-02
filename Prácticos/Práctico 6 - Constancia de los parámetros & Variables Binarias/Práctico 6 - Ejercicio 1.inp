@@ -1,0 +1,218 @@
+# PRÁCTICO 6 - EJERCICIO 1
+
+open "F:\UdelaR\CCEEA\Semestre 6\Econometria I\Prácticos\Práctico 6 - Constancia de los parámetros & Variables Binarias\ECH.gdt"
+
+# SE PIDE 1.
+
+# PARTE a.
+
+summary gvivienda ing_tot
+
+# ordeno la muestra de menor a mayor según el ingreso total del hogar
+# esto me permite ver cuántos valores iguales a cero tengo en la muestra
+
+dataset sortby ing_tot
+
+# PARTE b.
+
+genr log_gvivienda=log(gvivienda)
+genr log_ing_tot=log(ing_tot)
+
+summary log_gvivienda log_ing_tot
+
+# los valors ausentes se debe a que hay tres hogares que declararon un ingreso de cero
+# y el log de 0 no existe
+
+# en este análisis no tiene mayores consecuencias dado que son solo 3 en más de 20mil
+
+# las transformaciones log se realizan para que los parámetros puedan ser 
+# interpretados com elasticidades
+
+# PARTE c.
+
+# grafíco las variables log_gvivienda log_ing_tot
+
+Graph1 <- gnuplot log_gvivienda log_ing_tot
+
+Graph1.show
+
+# estimo el modelo solicitado
+
+M1 <- ols log_gvivienda const log_ing_tot
+
+# Guardo la SCResi_1 dado que la voy a necesitar luego
+
+genr SCResi_1=$ess
+
+# SE PIDE 2
+
+# PARTE a.
+
+# i) X de efectos fijos.
+# ii) No multicolinealidad
+# iii) E(ε) = 0
+# iv) No autocorrelación
+# v) Homoscedasticidad
+# vi) Distribución normal
+# vii) β constante
+
+# PARTE b. 
+
+# beta2 representa la elasticidad ingreso del gasto en vivienda de los hogares
+
+# H0) beta2 = 0 versus H1) beta 2 distinto de cero
+
+# RC = { muestras / |e| > t_n-k_0975 }
+
+# estadístico: E= beta2 / stderr_beta2
+
+genr e_beta2 = $coeff(log_ing_tot)/$stderr(log_ing_tot)
+
+genr t_20767_0975=critical(t, 20767, 0.025)
+
+# nótese que |e| = 160.363 > 1.96 = t,20767,0.975 entonces Rechazo H0
+# por lo que el parámetro beta2 es significativo al 5%
+
+# PARTE c.
+
+# H0) beta2 >= 1 versus H1) beta 2 < 1
+# con esta prueba se busca verificar si el gasto en vivienda es elástico en el
+# ingreso (ambas en logaritmos)
+
+# dado que es una prueba de desigualdad, la región crítica es a una cola
+# RC = { muestras / e < t_n-k_095 }
+
+# estadístico: E= (beta2 - 1) / stderr_beta2
+
+genr e_beta2menos1 = ($coeff(log_ing_tot)-1)/$stderr(log_ing_tot)
+
+genr t_20767_095=critical(t, 20767, 0.05)
+
+# nótese que e = -44.9 < 1.64 = t_20767_095 entonces rechazo H0
+# por lo que existe evidencia estadística suficienta para afirmar que beta2 < 1
+# por lo tanto, el gasto en vivienda es inleástico con el ingreso
+
+# SE PIDE 3
+
+# PARTE a.
+
+# se estaría violando el supuesto de que el vector de betas es constante
+
+# PARTE b. 
+
+# constiste en comprar dos metodoglogías: en una de ellas se considera toda la 
+# muestra. En la segunda se particiona la muestra entre los hogares del interior
+# y los de Mvdeo (para este último se estiman dos modelos)
+# Luego se somete el modelo particionada a test de restricciones de igualdad 
+# de coeficientes de estimación.
+
+# SE PIDE 4
+
+# PARTE a.
+
+# la regresión a estimar será: 
+# log_gvivienda_i = alpha1 + alpha2 * log_ing_tot_i + mu_i para todo i tal que dpto==1
+
+# restrinjo la muestra a solo los hogares de mvdeo
+
+smpl dpto==1 --restrict
+
+# estimo el Modelo2
+
+M2 <- ols log_gvivienda const log_ing_tot
+
+# Guardo la SCResi_2 dado que luego la voy a necesitar
+
+genr SCResi_2=$ess
+
+# PARTE b.
+
+# primero debo recuperar la base completa
+
+smpl full
+
+# la regresión a estimar será:
+# log_gvivienda_i = gamma1 + gamma2 * log_ing_tot_i + nu_i para todo i tal que dpto > 1
+
+# restrinjo la muestra a solo los hogares del interior
+
+smpl dpto>1 --restrict
+
+# estimo el modelo3
+
+M3 <- ols log_gvivienda const log_ing_tot
+
+# Guardo la SCResi_3 dado que luego la voy a necesitar
+
+genr SCResi_3=$ess
+
+# PARTE c.
+
+# primero debo recuperar toda la muestra
+
+smpl full
+
+# la regresión a estimar será:
+# log_gvivienda_i = delta1 + delta2 * mvdeo_i + delta3 * log_ing_tot_i + delta4 * log_ing_tot_i * mvdeo_i + eta_i para todo i=1;...;20769
+
+# genero la dummy mvdeo y la variable log_ing_tot_mvdeo
+
+genr mvdeo = (dpto==1)
+
+genr log_ing_tot_mvdeo = log_ing_tot * mvdeo
+
+# estimo el modelo 4
+
+M4 <- ols log_gvivienda const mvdeo log_ing_tot log_ing_tot_mvdeo
+
+# Guardo la SCResi_4 dado que luego la voy a necesitar
+
+genr SCResi_4=$ess
+
+# SE PIDE 5
+
+# PARTE a.
+
+# Nótese que:
+# gamma1 = delt1
+# gamma2 = delta3
+# delta1 + delta2 = alpha1
+# delta3 + delta4 = alpha2
+
+# PARTE b.
+
+# Camino 1: comparar los modelos 1 (restringido) con 2 y 3 (sin restrinjir)
+
+# H0) alpha1 = gamma1 y alpha2 = gamma2 versus H1) alguna no se cumple
+
+# RC = { muestras / e > F_k_n-2k_095 } 
+
+genr F_2_20765_095=critical(F, 2, 20765, 0.05)
+
+# E = ((SCResi_1 - (SCResi_2 + SCResi_3))/2)/(SCResi_1/(n-2k))
+
+genr e=((SCResi_1 - (SCResi_2 + SCResi_3))/2)/((SCResi_2 + SCResi_3)/(20765))
+
+# Nótese que e > F_2_20765_095 entonces rechazo H0
+# por lo tanto, no hay evidencia estadística suficiente para afirmar que ambos
+# parámetros sean iguales
+# Es decir, rechazo la hipótesis de AUSENCIA de cambio estructural
+
+# si alguna de las sub-muestras fuera muy pequeña, igual puedo usar un test F
+# pero de la forma F= ((SCResi_1 - SCResi_muestra_más_grande)/muestra_más_grande)/(SCResi_muestra_más_grande/(muestra_más_chica-k))
+
+# Camino 2: comparo el Modelo 1 (restringido) con el modelo 3 (sin restricción)
+
+# H0) delta2 = delta3 = 0 versus H1) alguno no es cero
+
+# RC = { muestras / e > F_muestrachica_muestragrande_095 }
+
+genr F_mchica_mgrande_095=critical(F, 7175, 13592, 0.05)
+
+# estadístico E = ((SCResi_1 - SCResi_3)/7175)/(SCREsi_3/13594) 
+
+genr E = ((SCResi_1 - SCResi_3)/7175)/(SCResi_3/13594)
+
+# nótese que e > F, entonces rechazo H0 
+# por lo tanto, no existe evidencia estadística para afirmar que ambos coeffs sean cero
+# rechazo la hipótesis de ausencia de cambio estructural

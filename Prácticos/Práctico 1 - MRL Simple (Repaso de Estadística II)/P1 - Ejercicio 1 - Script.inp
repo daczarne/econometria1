@@ -1,0 +1,39 @@
+# PRÁCTICO 1 - EJERCICIO 1 - Aplicación en Gretl
+
+# abro el archivo correspondiente
+
+open "F:\UdelaR\CCEEA\Semestre 6\Econometria I\Prácticos\Práctico 1 - MRL Simple (Repaso de Estadística II)\votos2014.txt"
+
+# Parte 1.
+# corro la regresión solicitada: VoteA_i = alpha + beta * expendA_i + u_i para todo i=1;...;173
+
+ols voteA const expendA
+
+# Parte 2.
+# llamo a los coeficientes alpha y beta
+
+scalar alpha_hut=$coeff(const)
+scalar beta_hut=$coeff(expendA)
+
+# Parte 3.
+# genero las variables y_bar (media muestral de y) y x_bar (media muestral de x)
+
+scalar y_bar=mean(voteA)
+scalar x_bar=mean(expendA)
+
+# verifico que las medias muestrales verifiquen la ecuación: alhpa_hut - y_bar + beta_hut * x_bar = 0
+
+scalar verfi = alpha_hut - y_bar + beta_hut * x_bar
+
+# nótese que la resultado no es exactamente 0, pero muy, muy cercano a cero
+
+# Parte 4.
+# genero la variable residuos:
+
+genr residuos = $uhat
+
+# luego sumo los residuos:
+
+scalar suma_de_residuos=sum(residuos)
+
+#nótese que la misma no es exactamente igual a cero, pero muy cercana a cero

@@ -1,0 +1,27 @@
+##################################
+#### PRÁCTICO 5 - EJERCICIO 1 ####
+##################################
+
+open "C:\Users\dacza_000\Desktop\Práctico 5 - 2016\cps_ej1_practico5.gdt"
+
+genr lwage=log(wage)
+genr exper2=exper*exper
+genr femeduc=female*educ
+genr exper210=exper2/10
+
+M1 <- ols wage const female
+M2 <- ols wage const female educ exper
+M3 <- ols lwage const female educ exper exper2
+M4 <- ols lwage const female educ exper exper2 femeduc
+
+M5 <- ols lwage const female educ exper exper210
+
+#### PARTE 1 ####
+
+
+scalar t=critical(t, 532, 0.025)
+
+
+
+
+

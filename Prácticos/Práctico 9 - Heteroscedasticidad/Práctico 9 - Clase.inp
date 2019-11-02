@@ -1,0 +1,30 @@
+# PRÁCTICO 9 - EJERCICIO 2
+
+open "C:\Users\dacza_000\Desktop\UdelaR\CCEEA\Semestre 6\Econometria I\Prácticos\Práctico 9 - Heteroscedasticidad\alimentos.gdt"
+
+# PARTE a. 
+
+GRAPH1 <- gnuplot gto_alim ingreso
+
+GRAPH1.show
+
+# Comentario: no parece existir homoscedasticidad, dado que la distancia a la
+# recta de los distintos ptos varía mucho.
+
+# PARTE b. 
+
+MODELO1 <- ols gto_alim const ingreso
+
+genr residuos
+
+# Los beta son insesgados, pero no son eficientes
+
+# PARTE c.
+
+# Se entiende como la estimación que realizo ponderando cada variable por una
+# matriz de pesos inversos a las varianzas.
+
+
+
+
+

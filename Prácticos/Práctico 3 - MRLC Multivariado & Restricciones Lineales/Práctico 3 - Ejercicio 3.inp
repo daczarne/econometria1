@@ -1,0 +1,71 @@
+# PRÁCTICO 3 - EJERCICIO 3
+
+open "C:\Users\dacza_000\Desktop\UdelaR\CCEEA\Semestre 6\Econometria I\Prácticos\Práctico 3 - MRLC Multivariado & Restricciones Lineales\mlb1.gdt"
+
+# PARTE A
+
+# Estimo el modelo por MCO
+
+ols lsalary const years gamesyr bavg hrunsyr rbisyr
+
+# PARTE B
+
+# Significación global del modelo
+
+# H0) Beta_i=0 para todo i=2;...;6 versus H1) Existe Beta_i distinto de cero
+
+# RC={ muestras / F0>F_5_347_0.95 }
+
+# F0 =((SCT-SCResi)/(k-1))/(SCResi/(n-k)) con n=353 y k=6
+
+genr F=critical(F, 5, 347, 0.05)
+
+# F0>F_5_347_0.95, entonces Rechazo H0, por lo que existen parámetros
+# estadísticamente distintos de cero. El modelo es significativo al 5%
+
+# PARTE C
+
+# Para cada variable se realiza el test:
+# H0) Beta_i = 0 versus H1) Beta_i distinto de cero
+
+# RC = {muestras / |e| > t_n-k_1-alpha/2
+
+genr t_347_0975=critical(t, 347, 0.025)
+
+# t=beta_i_gorro/dt_gorro_beta_i_gorro
+
+# Por lo tanto, Beta_2 y Beta_3 son significativos al 5%
+# Beta_4, Beta_5, y Beta_5 no son significativos al 5%
+
+# PARTE D
+
+# Represntan los aumentos porcentuales esperados del salario, al aumentar en
+# una unidad las variables years o gamesyr respectivamente, ceteris paribus
+
+# PARTE E
+
+# Guardo la SCResi sin restringir
+
+genr SCResiSR=$ess
+
+# Estimo el modelo restringido:
+
+ols lsalary const bavg hrunsyr rbisyr
+
+# Guardo la SCResi restringida:
+
+genr SCResiR=$ess
+
+# Test: H0) Beta_4=Beta_5=Beta_6=0 versus H1) no lo son
+
+# RC={muestras / F0 > F_3_347_095}
+
+# Estadístico: F0 = ((SCResiR-SCResiSR)/q)/(SCResiSR/(n-k))
+
+genr F_3_347_095=critical(F, 3, 347, 0.05)
+
+genr F0=((SCResiR-SCResiSR)/3)/(SCResiSR/(347))
+
+# F0 > F_3_347_095 por lo que rechazo H0
+# Entonces, los parámetros son conjuntamente sig. al 5%
+

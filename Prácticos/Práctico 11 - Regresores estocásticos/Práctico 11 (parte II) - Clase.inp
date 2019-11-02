@@ -1,0 +1,78 @@
+# PRÁCTICO 11 PARTE II
+
+open "C:\Users\dacza_000\Desktop\UdelaR\CCEEA\Semestre 6\Econometria I\Prácticos\Práctico 11 - Regresores estocásticos\examen 20_05_2006.gdt"
+
+# EJERCICIO 1
+
+# PARTE 1.
+
+MODELO1 <- ols LWAGE const EDUC
+
+# Educ es significativo, por lo tanto existe efecto de la educación sobre el 
+# salario de las personas
+
+# Se espera que por cada año de educación adiconal, el salario aumente un 10.86%
+# aproximadamente, ceteris paribus
+
+# PARTE 2.
+
+# Motivo:
+# No hay forma de contrastar la correlación entre Educ_i y épsilon_i, porque 
+# el error no es observable. El motivo debe fundamentarse en la teoría.
+# Problemas de especificación: por ejemplo, podría estár faltando la productividad
+# Es esperable que la productividad esté correlacionada con la educ_i
+# Tambien podrían incluirse la habilidad (la cual tambien está relacionada con 
+# la educación)
+
+# Consecuencias:
+# Sospechamos que el regresor es endógeno (está relacionado con el error).
+# COV(educ_i, épsilon_i) =! 0
+# Esto implica que E(épsilon_i | educ_i) =! 0
+# Beta_MCO no es insesgada ni consistente
+
+# Solución
+# Estimar VI (problema: necesito el/los instrumento/s)
+#         El instru debe estar correlacionado con el regresor endógeno
+#         E incorrelacionado con el error (saca la endogeneidad), pero no lo 
+#         puedo ver => recurro a la teoría
+#         Estas condiciones implican que todo el efecto de Z sobre Y, se lleva
+#         a cabo a través de X. No tiene efecto por si mismo: Z -> X -> Y
+# Agregar las omitidas (pueden tener errores de medida sin son inobservables y
+# se utilizan PROXY). Este problema siempre debe solucionarse!!
+
+# PARTE 3.
+
+MODELO2 <- ols EDUC const FATHEDUC
+
+genr educ_gorro=$yhat
+
+# La edu del padre es significativa y positiva sobre el salario
+
+# PARTE 4.
+
+# FATHEDUC_i debe estar correlacionada con EDUC_i (podemos contrastar)
+# FATHEDUC_i no debe estar relacionado con LWAGE_i directamente
+# FATHEDUC_i no debe estar en el modelo original
+
+# PARTE 5.
+
+# MC2E surge de dos etapadas:
+#       Etapa 1: MODELO2 y obtenemos educ_gorro
+#       Etapa 2: estimo MCO utilizando 
+
+# Beta_VI = (Z'X)^(-1)Z'Y
+# V(Beta_VI) > V(Beta_MCO)
+
+MODELO2E <- tsls LWAGE const EDUC; const FATHEDUC
+
+# Cae el efecto y la significación
+
+##### FIN DEL EJERCICIO #####
+
+dataset clear
+
+#############################
+
+
+
+

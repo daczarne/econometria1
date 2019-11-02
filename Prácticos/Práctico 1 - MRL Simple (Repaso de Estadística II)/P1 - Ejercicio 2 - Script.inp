@@ -1,0 +1,43 @@
+# PRÁCTICO 1 - Ejercicio 2 - Aplicación en Gretl
+
+# paso 1 - abro el archivo con el que voy a trabajar
+
+open "C:\Users\dacza_000\Desktop\UdelaR\CCEEA\Semestre 6\Econometria I\Prácticos\Práctico 1\votos2014.txt"
+
+# paso 2 - corro la regresión por MCO
+
+ols voteA expendA
+
+# el objetivo es poder verificar el estimador que voy a calcular usando las matrices
+
+# Parte a)
+# paso 1 - calculo la matriz Y
+
+matrix Y = { voteA }
+
+# paso 2 - calculo la matriz X
+
+matrix X = { expendA }
+
+# paso 3 - calculo las matrices X'X , X'Y , (X'X)^-1
+
+matrix C = transp(X)*X
+matrix D = transp(X)*Y
+matrix E = invpd(C)
+
+# paso 4 - calculo el estimador beta utilizando las matrices y verifico que sea igual al generado por el comando ols
+
+matrix betahut=E*D
+
+# nótese que, en este caso, la matriz de estimadores es de 1x1 (es decir, es un escalar)
+
+# Parte b)
+# genero una variable que se corresponda con los componentes del vector de resifuos
+
+genr residuos=$uhat
+
+# genero una variable que sea la suma de los residuos
+
+genr sumaresiduos = sum(residuos)
+
+# nótese que él mismo es significativamente distinto de cero

@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE gretldata SYSTEM "gretldata.dtd">
+
+<gretldata version="1.3" name="cars" frequency="1" startobs="1" endobs="392" type="cross-section">
+<description>Data imported from Stata file 'cars.dta', 2011-04-06 14:47
+cars.def
+
+mpg  cyl  eng  wgt
+
+     Obs: 392
+
+    mpg = miles per gallon
+
+    cyl = number of cylinders
+
+    eng = engine displacement in cubic inches
+
+    wgt = vehicle weight in pounds
+
+ Data on 392 cars taken from consumer choice magazines.
+
+Note on units of measurement: For those who are more comfortable with kilometres,
+           litres and kilograms, a mile is a measure of distance, gallons
+           and cubic inches are used to measure volume, and the pound is a
+           measure of weight.
+
+
+
+    Variable |       Obs        Mean    Std. Dev.       Min        Max
+-------------+--------------------------------------------------------
+         mpg |       392    23.44592    7.805007          9       46.6
+         cyl |       392    5.471939    1.705783          3          8
+         eng |       392     194.412     104.644         68        455
+         wgt |       392    2977.584    849.4026       1613       5140
+</description>
+<variables count="4">
+<variable name="mpg"
+ label="miles per gallon"
+/>
+<variable name="cyl"
+ label="number of cylinders"
+/>
+<variable name="eng"
+ label="engine displacement in cubic inches"
+/>
+<variable name="wgt"
+ label="vehicle weight in pounds"
+/>
+</variables>
+<observations count="392" labels="false">
+<obs>18 8 307 3504 </obs>
+<obs>15 8 350 3693 </obs>
+<obs>18 8 318 3436 </obs>
+<obs>16 8 304 3433 </obs>
+<obs>17 8 302 3449 </obs>
+<obs>15 8 429 4341 </obs>
+<obs>14 8 454 4354 </obs>
+<obs>14 8 440 4312 </obs>
+<obs>14 8 455 4425 </obs>
+<obs>15 8 390 3850 </obs>
+<obs>15 8 383 3563 </obs>
+<obs>14 8 340 3609 </obs>
+<obs>15 8 400 3761 </obs>
+<obs>14 8 455 3086 </obs>
+<obs>24 4 113 2372 </obs>
+<obs>22 6 198 2833 </obs>
+<obs>18 6 199 2774 </obs>
+<obs>21 6 200 2587 </obs>
+<obs>27 4 97 2130 </obs>
+<obs>26 4 97 1835 </obs>
+<obs>25 4 110 2672 </obs>
+<obs>24 4 107 2430 </obs>
+<obs>25 4 104 2375 </obs>
+<obs>26 4 121 2234 </obs>
+<obs>21 6 199 2648 </obs>
+<obs>10 8 360 4615 </obs>
+<obs>10 8 307 4376 </obs>
+<obs>11 8 318 4382 </obs>
+<obs>9 8 304 4732 </obs>
+<obs>27 4 97 2130 </obs>
+<obs>28 4 140 2264 </obs>
+<obs>25 4 113 2228 </obs>
+<obs>19 6 232 2634 </obs>
+<obs>16 6 225 3439 </obs>
+<obs>17 6 250 3329 </obs>
+<obs>19 6 250 3302 </obs>
+<obs>18 6 232 3288 </obs>
+<obs>14 8 350 4209 </obs>
+<obs>14 8 400 4464 </obs>
+<obs>14 8 351 4154 </obs>
+<obs>14 8 318 4096 </obs>
+<obs>12 8 383 4955 </obs>
+<obs>13 8 400 4746 </obs>
+<obs>13 8 400 5140 </obs>
+<obs>18 6 258 2962 </obs>
+<obs>22 4 140 2408 </obs>
+<obs>19 6 250 3282 </obs>
+<obs>18 6 250 3139 </obs>
+<obs>23 4 122 2220 </obs>
+<obs>28 4 116 2123 </obs>
+<obs>30 4 79 2074 </obs>
+<obs>30 4 88 2065 </obs>
+<obs>31 4 71 1773 </obs>
+<obs>35 4 72 1613 </obs>
+<obs>27 4 97 1834 </obs>
+<obs>26 4 91 1955 </obs>
+<obs>24 4 113 2278 </obs>
+<obs>25 4 97.5 2126 </obs>
+<obs>23 4 97 2254 </obs>
+<obs>20 4 140 2408 </obs>
+<obs>21 4 122 2226 </obs>
+<obs>13 8 350 4274 </obs>
+<obs>14 8 400 4385 </obs>
+<obs>15 8 318 4135 </obs>
+<obs>14 8 351 4129 </obs>
+<obs>17 8 304 3672 </obs>
+<obs>11 8 429 4633 </obs>
+<obs>13 8 350 4502 </obs>
+<obs>12 8 350 4456 </obs>
+<obs>13 8 400 4422 </obs>
+<obs>19 3 70 2330 </obs>
+<obs>15 8 304 3892 </obs>
+<obs>13 8 307 4098 </obs>
+<obs>13 8 302 4294 </obs>
+<obs>14 8 318 4077 </obs>
+<obs>18 4 121 2933 </obs>
+<obs>22 4 121 2511 </obs>
+<obs>21 4 120 2979 </obs>
+<obs>26 4 96 2189 </obs>
+<obs>22 4 122 2395 </obs>
+<obs>28 4 97 2288 </obs>
+<obs>23 4 120 2506 </obs>
+<obs>28 4 98 2164 </obs>
+<obs>27 4 97 2100 </obs>
+<obs>13 8 350 4100 </obs>
+<obs>14 8 304 3672 </obs>
+<obs>13 8 350 3988 </obs>
+<obs>14 8 302 4042 </obs>
+<obs>15 8 318 3777 </obs>
+<obs>12 8 429 4952 </obs>
+<obs>13 8 400 4464 </obs>
+<obs>13 8 351 4363 </obs>
+<obs>14 8 318 4237 </obs>
+<obs>13 8 440 4735 </obs>
+<obs>12 8 455 4951 </obs>
+<obs>13 8 360 3821 </obs>
+<obs>18 6 225 3121 </obs>
+<obs>16 6 250 3278 </obs>
+<obs>18 6 232 2945 </obs>
+<obs>18 6 250 3021 </obs>
+<obs>23 6 198 2904 </obs>
+<obs>26 4 97 1950 </obs>
+<obs>11 8 400 4997 </obs>
+<obs>12 8 400 4906 </obs>
+<obs>13 8 360 4654 </obs>
+<obs>12 8 350 4499 </obs>
+<obs>18 6 232 2789 </obs>
+<obs>20 4 97 2279 </obs>
+<obs>21 4 140 2401 </obs>
+<obs>22 4 108 2379 </obs>
+<obs>18 3 70 2124 </obs>
+<obs>19 4 122 2310 </obs>
+<obs>21 6 155 2472 </obs>
+<obs>26 4 98 2265 </obs>
+<obs>15 8 350 4082 </obs>
+<obs>16 8 400 4278 </obs>
+<obs>29 4 68 1867 </obs>
+<obs>24 4 116 2158 </obs>
+<obs>20 4 114 2582 </obs>
+<obs>19 4 121 2868 </obs>
+<obs>15 8 318 3399 </obs>
+<obs>24 4 121 2660 </obs>
+<obs>20 6 156 2807 </obs>
+<obs>11 8 350 3664 </obs>
+<obs>20 6 198 3102 </obs>
+<obs>19 6 232 2901 </obs>
+<obs>15 6 250 3336 </obs>
+<obs>31 4 79 1950 </obs>
+<obs>26 4 122 2451 </obs>
+<obs>32 4 71 1836 </obs>
+<obs>25 4 140 2542 </obs>
+<obs>16 6 250 3781 </obs>
+<obs>16 6 258 3632 </obs>
+<obs>18 6 225 3613 </obs>
+<obs>16 8 302 4141 </obs>
+<obs>13 8 350 4699 </obs>
+<obs>14 8 318 4457 </obs>
+<obs>14 8 302 4638 </obs>
+<obs>14 8 304 4257 </obs>
+<obs>29 4 98 2219 </obs>
+<obs>26 4 79 1963 </obs>
+<obs>26 4 97 2300 </obs>
+<obs>31 4 76 1649 </obs>
+<obs>32 4 83 2003 </obs>
+<obs>28 4 90 2125 </obs>
+<obs>24 4 90 2108 </obs>
+<obs>26 4 116 2246 </obs>
+<obs>24 4 120 2489 </obs>
+<obs>26 4 108 2391 </obs>
+<obs>31 4 79 2000 </obs>
+<obs>19 6 225 3264 </obs>
+<obs>18 6 250 3459 </obs>
+<obs>15 6 250 3432 </obs>
+<obs>15 6 250 3158 </obs>
+<obs>16 8 400 4668 </obs>
+<obs>15 8 350 4440 </obs>
+<obs>16 8 318 4498 </obs>
+<obs>14 8 351 4657 </obs>
+<obs>17 6 231 3907 </obs>
+<obs>16 6 250 3897 </obs>
+<obs>15 6 258 3730 </obs>
+<obs>18 6 225 3785 </obs>
+<obs>21 6 231 3039 </obs>
+<obs>20 8 262 3221 </obs>
+<obs>13 8 302 3169 </obs>
+<obs>29 4 97 2171 </obs>
+<obs>23 4 140 2639 </obs>
+<obs>20 6 232 2914 </obs>
+<obs>23 4 140 2592 </obs>
+<obs>24 4 134 2702 </obs>
+<obs>25 4 90 2223 </obs>
+<obs>24 4 119 2545 </obs>
+<obs>18 6 171 2984 </obs>
+<obs>29 4 90 1937 </obs>
+<obs>19 6 232 3211 </obs>
+<obs>23 4 115 2694 </obs>
+<obs>23 4 120 2957 </obs>
+<obs>22 4 121 2945 </obs>
+<obs>25 4 121 2671 </obs>
+<obs>33 4 91 1795 </obs>
+<obs>28 4 107 2464 </obs>
+<obs>25 4 116 2220 </obs>
+<obs>25 4 140 2572 </obs>
+<obs>26 4 98 2255 </obs>
+<obs>27 4 101 2202 </obs>
+<obs>17.5 8 305 4215 </obs>
+<obs>16 8 318 4190 </obs>
+<obs>15.5 8 304 3962 </obs>
+<obs>14.5 8 351 4215 </obs>
+<obs>22 6 225 3233 </obs>
+<obs>22 6 250 3353 </obs>
+<obs>24 6 200 3012 </obs>
+<obs>22.5 6 232 3085 </obs>
+<obs>29 4 85 2035 </obs>
+<obs>24.5 4 98 2164 </obs>
+<obs>29 4 90 1937 </obs>
+<obs>33 4 91 1795 </obs>
+<obs>20 6 225 3651 </obs>
+<obs>18 6 250 3574 </obs>
+<obs>18.5 6 250 3645 </obs>
+<obs>17.5 6 258 3193 </obs>
+<obs>29.5 4 97 1825 </obs>
+<obs>32 4 85 1990 </obs>
+<obs>28 4 97 2155 </obs>
+<obs>26.5 4 140 2565 </obs>
+<obs>20 4 130 3150 </obs>
+<obs>13 8 318 3940 </obs>
+<obs>19 4 120 3270 </obs>
+<obs>19 6 156 2930 </obs>
+<obs>16.5 6 168 3820 </obs>
+<obs>16.5 8 350 4380 </obs>
+<obs>13 8 350 4055 </obs>
+<obs>13 8 302 3870 </obs>
+<obs>13 8 318 3755 </obs>
+<obs>31.5 4 98 2045 </obs>
+<obs>30 4 111 2155 </obs>
+<obs>36 4 79 1825 </obs>
+<obs>25.5 4 122 2300 </obs>
+<obs>33.5 4 85 1945 </obs>
+<obs>17.5 8 305 3880 </obs>
+<obs>17 8 260 4060 </obs>
+<obs>15.5 8 318 4140 </obs>
+<obs>15 8 302 4295 </obs>
+<obs>17.5 6 250 3520 </obs>
+<obs>20.5 6 231 3425 </obs>
+<obs>19 6 225 3630 </obs>
+<obs>18.5 6 250 3525 </obs>
+<obs>16 8 400 4220 </obs>
+<obs>15.5 8 350 4165 </obs>
+<obs>15.5 8 400 4325 </obs>
+<obs>16 8 351 4335 </obs>
+<obs>29 4 97 1940 </obs>
+<obs>24.5 4 151 2740 </obs>
+<obs>26 4 97 2265 </obs>
+<obs>25.5 4 140 2755 </obs>
+<obs>30.5 4 98 2051 </obs>
+<obs>33.5 4 98 2075 </obs>
+<obs>30 4 97 1985 </obs>
+<obs>30.5 4 97 2190 </obs>
+<obs>22 6 146 2815 </obs>
+<obs>21.5 4 121 2600 </obs>
+<obs>21.5 3 80 2720 </obs>
+<obs>43.1 4 90 1985 </obs>
+<obs>36.1 4 98 1800 </obs>
+<obs>32.8 4 78 1985 </obs>
+<obs>39.4 4 85 2070 </obs>
+<obs>36.1 4 91 1800 </obs>
+<obs>19.9 8 260 3365 </obs>
+<obs>19.4 8 318 3735 </obs>
+<obs>20.2 8 302 3570 </obs>
+<obs>19.2 6 231 3535 </obs>
+<obs>20.5 6 200 3155 </obs>
+<obs>20.2 6 200 2965 </obs>
+<obs>25.1 4 140 2720 </obs>
+<obs>20.5 6 225 3430 </obs>
+<obs>19.4 6 232 3210 </obs>
+<obs>20.6 6 231 3380 </obs>
+<obs>20.8 6 200 3070 </obs>
+<obs>18.6 6 225 3620 </obs>
+<obs>18.1 6 258 3410 </obs>
+<obs>19.2 8 305 3425 </obs>
+<obs>17.7 6 231 3445 </obs>
+<obs>18.1 8 302 3205 </obs>
+<obs>17.5 8 318 4080 </obs>
+<obs>30 4 98 2155 </obs>
+<obs>27.5 4 134 2560 </obs>
+<obs>27.2 4 119 2300 </obs>
+<obs>30.9 4 105 2230 </obs>
+<obs>21.1 4 134 2515 </obs>
+<obs>23.2 4 156 2745 </obs>
+<obs>23.8 4 151 2855 </obs>
+<obs>23.9 4 119 2405 </obs>
+<obs>20.3 5 131 2830 </obs>
+<obs>17 6 163 3140 </obs>
+<obs>21.6 4 121 2795 </obs>
+<obs>16.2 6 163 3410 </obs>
+<obs>31.5 4 89 1990 </obs>
+<obs>29.5 4 98 2135 </obs>
+<obs>21.5 6 231 3245 </obs>
+<obs>19.8 6 200 2990 </obs>
+<obs>22.3 4 140 2890 </obs>
+<obs>20.2 6 232 3265 </obs>
+<obs>20.6 6 225 3360 </obs>
+<obs>17 8 305 3840 </obs>
+<obs>17.6 8 302 3725 </obs>
+<obs>16.5 8 351 3955 </obs>
+<obs>18.2 8 318 3830 </obs>
+<obs>16.9 8 350 4360 </obs>
+<obs>15.5 8 351 4054 </obs>
+<obs>19.2 8 267 3605 </obs>
+<obs>18.5 8 360 3940 </obs>
+<obs>31.9 4 89 1925 </obs>
+<obs>34.1 4 86 1975 </obs>
+<obs>35.7 4 98 1915 </obs>
+<obs>27.4 4 121 2670 </obs>
+<obs>25.4 5 183 3530 </obs>
+<obs>23 8 350 3900 </obs>
+<obs>27.2 4 141 3190 </obs>
+<obs>23.9 8 260 3420 </obs>
+<obs>34.2 4 105 2200 </obs>
+<obs>34.5 4 105 2150 </obs>
+<obs>31.8 4 85 2020 </obs>
+<obs>37.3 4 91 2130 </obs>
+<obs>28.4 4 151 2670 </obs>
+<obs>28.8 6 173 2595 </obs>
+<obs>26.8 6 173 2700 </obs>
+<obs>33.5 4 151 2556 </obs>
+<obs>41.5 4 98 2144 </obs>
+<obs>38.1 4 89 1968 </obs>
+<obs>32.1 4 98 2120 </obs>
+<obs>37.2 4 86 2019 </obs>
+<obs>28 4 151 2678 </obs>
+<obs>26.4 4 140 2870 </obs>
+<obs>24.3 4 151 3003 </obs>
+<obs>19.1 6 225 3381 </obs>
+<obs>34.3 4 97 2188 </obs>
+<obs>29.8 4 134 2711 </obs>
+<obs>31.3 4 120 2542 </obs>
+<obs>37 4 119 2434 </obs>
+<obs>32.2 4 108 2265 </obs>
+<obs>46.6 4 86 2110 </obs>
+<obs>27.9 4 156 2800 </obs>
+<obs>40.8 4 85 2110 </obs>
+<obs>44.3 4 90 2085 </obs>
+<obs>43.4 4 90 2335 </obs>
+<obs>36.4 5 121 2950 </obs>
+<obs>30 4 146 3250 </obs>
+<obs>44.6 4 91 1850 </obs>
+<obs>33.8 4 97 2145 </obs>
+<obs>29.8 4 89 1845 </obs>
+<obs>32.7 6 168 2910 </obs>
+<obs>23.7 3 70 2420 </obs>
+<obs>35 4 122 2500 </obs>
+<obs>32.4 4 107 2290 </obs>
+<obs>27.2 4 135 2490 </obs>
+<obs>26.6 4 151 2635 </obs>
+<obs>25.8 4 156 2620 </obs>
+<obs>23.5 6 173 2725 </obs>
+<obs>30 4 135 2385 </obs>
+<obs>39.1 4 79 1755 </obs>
+<obs>39 4 86 1875 </obs>
+<obs>35.1 4 81 1760 </obs>
+<obs>32.3 4 97 2065 </obs>
+<obs>37 4 85 1975 </obs>
+<obs>37.7 4 89 2050 </obs>
+<obs>34.1 4 91 1985 </obs>
+<obs>34.7 4 105 2215 </obs>
+<obs>34.4 4 98 2045 </obs>
+<obs>29.9 4 98 2380 </obs>
+<obs>33 4 105 2190 </obs>
+<obs>33.7 4 107 2210 </obs>
+<obs>32.4 4 108 2350 </obs>
+<obs>32.9 4 119 2615 </obs>
+<obs>31.6 4 120 2635 </obs>
+<obs>28.1 4 141 3230 </obs>
+<obs>30.7 6 145 3160 </obs>
+<obs>25.4 6 168 2900 </obs>
+<obs>24.2 6 146 2930 </obs>
+<obs>22.4 6 231 3415 </obs>
+<obs>26.6 8 350 3725 </obs>
+<obs>20.2 6 200 3060 </obs>
+<obs>17.6 6 225 3465 </obs>
+<obs>28 4 112 2605 </obs>
+<obs>27 4 112 2640 </obs>
+<obs>34 4 112 2395 </obs>
+<obs>31 4 112 2575 </obs>
+<obs>29 4 135 2525 </obs>
+<obs>27 4 151 2735 </obs>
+<obs>24 4 140 2865 </obs>
+<obs>36 4 105 1980 </obs>
+<obs>37 4 91 2025 </obs>
+<obs>31 4 91 1970 </obs>
+<obs>38 4 105 2125 </obs>
+<obs>36 4 98 2125 </obs>
+<obs>36 4 120 2160 </obs>
+<obs>36 4 107 2205 </obs>
+<obs>34 4 108 2245 </obs>
+<obs>38 4 91 1965 </obs>
+<obs>32 4 91 1965 </obs>
+<obs>38 4 91 1995 </obs>
+<obs>25 6 181 2945 </obs>
+<obs>38 6 262 3015 </obs>
+<obs>26 4 156 2585 </obs>
+<obs>22 6 232 2835 </obs>
+<obs>32 4 144 2665 </obs>
+<obs>36 4 135 2370 </obs>
+<obs>27 4 151 2950 </obs>
+<obs>27 4 140 2790 </obs>
+<obs>44 4 97 2130 </obs>
+<obs>32 4 135 2295 </obs>
+<obs>28 4 120 2625 </obs>
+<obs>31 4 119 2720 </obs>
+</observations>
+</gretldata>

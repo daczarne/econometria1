@@ -1,0 +1,33 @@
+# PRÁCTICO 8 - TEORÍA ASINTÓTICA
+
+open "C:\Users\dacza_000\Desktop\UdelaR\CCEEA\Semestre 6\Econometria I\Prácticos\Práctico 8 - Teoría Asintótica - Wald, ML y RV\Ej4_p8"
+
+# Estimo los modelos
+
+ModeloSR <- ols faminc const husage age hushisp hispanic huseduc educ
+
+scalar SCRsr=$ess
+
+ModeloR <- ols faminc const age huseduc educ
+
+scalar SCRr=$ess
+
+scalar n=5634
+
+# Estadístico Wald
+
+scalar W=n*(SCRr-SCRsr)/SCRsr
+
+# Estadístico ML
+
+scalar ML=n*(SCRr-SCRsr)/SCRr
+
+# Estadístico RV
+
+scalar RV=n*log(1+(SCRr-SCRsr)/SCRsr)
+
+# Chi cuadrado
+
+scalar Chi=critical(c, 3, 0.05)
+
+

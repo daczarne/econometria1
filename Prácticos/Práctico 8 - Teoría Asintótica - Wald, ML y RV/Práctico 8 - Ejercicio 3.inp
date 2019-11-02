@@ -1,0 +1,52 @@
+# PRÁCTICO 8 - Ejercicio 3
+
+open "C:\Users\dacza_000\Desktop\UdelaR\CCEEA\Semestre 6\Econometria I\Prácticos\Práctico 8 - Teoría Asintótica - Wald, ML y RV\Ej3_p8"
+
+scalar n = 123
+
+MODELO1 <- ols Cost const Output Price_Lab Price_K Price_Fuel 
+
+scalar k = 5
+
+# PARTE a.
+
+# Estudio de significación: test de restricciones globales con estadístico F
+#                           test de restricciones individuales con estadísticos t
+
+# Conslusión: el modelo es significativo globalmente, y los regresores son 
+# significativos individualmente al 5%
+
+# Los coeficientes son el aumento/disminución esperada (en nivel) del costo ante
+# cambios de sus respectivos regresores, manteniendose lo demás constante.
+
+# PARTE b.
+
+# H0) beta5 =< 0.75 versus H1) beta5 > 0.75
+# RC = { muestras / e > t_n-k_0.95 }
+
+scalar gl_t=n-k
+
+scalar t=critical(t, gl_t, 0.05)
+
+# e = (beta_5 - 0.75) / (strd_dev_beta_5) 
+
+scalar beta_5 = $coeff(Price_Fuel)
+
+scalar stderr_beta5=$stderr(Price_Fuel)
+
+scalar e = (beta_5 - 0.75) / (stderr_beta5)
+
+# Nótese que e < t_118, entonces no rechazo H0.
+# Por lo tanto, existe evidencia estadística suficiente para afirmar que beta5
+# es menor o igual a 0.75.
+
+# PARTE c. 
+
+# PARTE c.1. 
+
+MODELO2 <- ols Cost const Output Price_Lab KandFuel
+
+
+# PARTE c.2.
+
+

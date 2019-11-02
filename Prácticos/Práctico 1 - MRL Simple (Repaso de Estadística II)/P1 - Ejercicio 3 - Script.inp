@@ -1,0 +1,47 @@
+# PRÁCTICO 1 - EJERCICIO 3 - Aplicación en Gretl
+
+# abro el archivo votos2014.txt
+
+open "C:\Users\dacza_000\Desktop\UdelaR\CCEEA\Semestre 6\Econometria I\Prácticos\Práctico 1\votos2014.txt"
+
+# PARTE 1.
+
+# Repito el modelo del EJERCICIO 1
+
+ols voteA const expendA
+
+# Calculo el coeficiente de correlación lineal muestral (r) entre voteA y expendA
+
+genr r_voteA_expendA=corr(voteA,expendA)
+
+# genero los desvios muestrales (s) de las variables del modelo
+
+genr s_voteA=sd(voteA)
+genr s_expendA=sd(expendA)
+
+# genero el cociente de desvios
+
+genr cociente_desvios=(s_voteA/s_expendA)
+
+# calculo beta_gorro a partir de los datos:
+
+genr beta_hat=(r_voteA_expendA*cociente_desvios)
+
+# nótese que el beta_hat calculado de esta manera es igual al calculado en la salda de la regresión
+
+# PARTE 2.
+
+# calculo la covarianza muestral
+
+genr s_voteA_expendA=cov(voteA,expendA)
+
+# calculo la varianza muestra del expendA
+
+genr s_sqrt_expendA=var(expendA)
+
+# divido la covarianza muestral sobre la varianza de expend A
+
+genr beta_hat_2=(s_voteA_expendA/s_sqrt_expendA)
+
+# nótese que beta_hat_2 coincide con beta_hat, y con el beta_hat calculado por la regresión
+

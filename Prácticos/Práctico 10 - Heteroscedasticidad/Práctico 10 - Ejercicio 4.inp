@@ -1,0 +1,101 @@
+# PRÁCTICO 10 - EJERCICIO 4
+
+open "C:\Users\dacza_000\Desktop\UdelaR\CCEEA\Semestre 6\Econometria I\Prácticos\Práctico 10 - Heteroscedasticidad\sleep75.gdt"
+
+#### SE PIDE 1 ####
+
+# PARTE a. 
+
+genr hsnap=(slpnaps-sleep)/60
+genr exper2=exper*exper
+
+MODELO1 <- ols lhrwage const educ exper exper2 male union hsnap
+
+genr resi1=$uhat
+
+# PARTE b.
+
+# Contraste t de significación individual
+
+# La variable es significativa al 10%
+
+# El signo del coeficiente (-) indica que se espera una caida del logaritmo del 
+# salario por cada hora adicional de siesta, ceteris paribus.
+
+# Si se durmieran 4 hrs más por semana, se esperaría una caida de 0.0434 en el 
+# logaritmo del salario
+
+# PARTE c. 
+
+Graph1 <- gnuplot resi1 hsnap
+
+Graph1.show
+
+# Se están buscando indícios de hetero.
+
+# Si se confirmara la presencia de hetero, entonces los estadísticos t y F no 
+# serán válidos, y la inferencia no será posible con ellos
+
+#### SE PIDE 2 ####
+
+# PARTE a. 
+
+loop foreach i resi1 educ male union hsnap
+    genr $i2=$i*$i
+    endloop
+
+genr educ_male=educ*male
+genr educ_union=educ*male
+genr educ_hsnap=educ*hsnap
+genr educ_exper=educ*exper
+genr male_union=male*union
+genr male_hsnap=male*hsnap
+genr male_exper=male*exper
+genr union_hsnap=union*hsnap
+genr union_exper=union*exper
+genr hsnap_exper=hsnap*exper
+genr exper3=exper*exper*exper
+genr exper4=exper*exper*exper*exper
+
+WHITE <- ols resi12 const educ educ2 male male2 union union2 hsnap hsnap2 exper exper2 exper3 exper4 educ_male educ_union educ_hsnap educ_exper male_union male_hsnap male_exper union_hsnap union_exper hsnap_exper
+
+scalar R2White=$rsq
+
+# PARTE b.
+
+# Se pretende realizar el contraste de homo. de White
+
+# La elección de variables presenta dos problemas:
+# male 2, union2, y educ_union fueron omitidas por multicolinealidad exacta
+# aún así, la matriz de regresores es casi singular
+
+# Prueba de White
+
+# H0) homo versus H1) hetero
+# H0) beta_1 = ... = beta_19 = 0 versus h1) existe beta_i =! 0 con i=1;...;19
+
+# RC = { muestras / lammbda > chi_p_1-alpha }
+# lammbda distribuye asintódicamente chi cuadrado bajo H0 cierta
+
+scalar chi_19_095=critical(c, 19, 0.05)
+
+scalar n=$nobs
+
+scalar lammbda=n*R2White
+
+# lammbda > chi, entonces se rechaza H0, y se acepta la existencia de hetero
+
+# PARTE c.
+
+# El test de White confirma la presencia de hetero, pero no informa qué 
+# variable/es la provocan
+
+# Yo propondría ajustar el modelo original, pero con varianzas robustas a la White
+# Es decir, estimaría MCGF utilizando la matriz diagonal de los residuos al
+# cuadrado como matriz omega_gorro
+
+# En este caso el estimador será insesgado, consistente, pero menos eficiente 
+# que beta_MCO
+
+##### FIN DE LA PROGRAMACIÓN #####
+

@@ -1,0 +1,29 @@
+
+genr exper2= exper*exper
+genr educ2= educ*educ
+genr hsnight= sleep/60/7
+genr hsnap= (sleep-slpnaps)/60/7
+
+ols lhrwage const educ exper exper2 male union hsnight
+ols lhrwage const educ exper exper2 male union hsnap
+
+genr exper3= exper2*exper
+genr exper4= exper3*exper
+genr hsnap2= hsnap*hsnap
+
+genr educ_exper= educ*exper
+genr educ_exper2= educ*exper2
+genr educ_male= educ*male
+genr educ_union= educ*union
+genr educ_hsnap= educ*hsnap
+genr exper_male= exper*male
+genr exper_union= exper*union
+genr exper_hsnap= exper*hsnap
+genr exper2_male= exper2*male
+genr exper2_union= exper2*union
+genr exper2_hsnap= exper2*hsnap
+genr male_union= male*union
+genr male_hsnap= male*hsnap
+genr union_hsnap= union*hsnap
+
+ols resid2 const educ educ2 exper exper2 exper3 exper4 male union hsnap hsnap2 educ_exper educ_exper2 educ_male educ_union educ_hsnap exper_male exper_union exper_hsnap exper2_male exper2_union exper2_hsnap male_union male_hsnap

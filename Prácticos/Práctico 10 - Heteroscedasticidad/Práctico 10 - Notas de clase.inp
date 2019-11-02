@@ -1,0 +1,23 @@
+# PRÁCTICO 10 - NOTAS DE CLASE
+
+open "C:\Users\dacza_000\Desktop\UdelaR\CCEEA\Semestre 6\Econometria I\Prácticos\Práctico 10 - Heteroscedasticidad\sleep75.gdt"
+
+### EJERCICICO 4
+
+## SE PIDE 1
+
+# PARTE a.
+
+genr exper2=exper^2
+genr hsnap=(slpnaps-sleep)/60
+
+MODELO1 <- ols lhrwage const educ exper exper2 male union hsnap
+
+genr resi=$uhat
+
+GRAF1 <- gnuplot resi hsnap
+
+GRAF1.show
+
+scalar t_1=critical(t, 525, 0.025)
+

@@ -1,0 +1,73 @@
+# PRÁCTICO 2 - Ejercicio 7 - Aplicación en Gretl
+
+# Abro el archivo ejercicio7.gdt
+
+open "C:\Users\dacza_000\Desktop\UdelaR\CCEEA\Semestre 6\Econometria I\Prácticos\Práctico 2\ejercicio7.gdt"
+
+# PARTE a.
+
+# Estimo la regresión Y = beta0 + beta1 * X1 + beta2 * X2 + épsilon
+
+ols Y const X1 X2
+
+genr beta1=$coeff(X1)
+genr beta2=$coeff(X2)
+
+# PARTE b.
+
+# Estimo la varianza de los errores
+
+genr SCResi=$ess
+genr grlib=$df
+
+genr var_resi=SCResi/grlib
+
+# PARTE c.
+
+genr MVCV=$vcv
+
+# PARTE d.
+
+genr R2=$rsq
+
+genr n=$T
+
+genr R2_corr=1-(n-1)/(grlib)*(1-R2)
+
+# PARTE e.
+
+# H0) Betai = 0 Versus H1) Betai ≠ 0 i = 1; 2
+# RC = { muestras / |t0| > t_5_0.975 }
+# t0 = Betai / de_betai
+
+genr t_5_0975=critical(t, 5, 0.025)
+
+# Nótese que el |t0| > t_5_0975 para ambos beta, entonces RH0 en ambas pruebas
+# Por lo tanto, ambos beta son significativos
+
+# H0) Betai = 0 para todo i=1; 2 Versus H1) existe Betai ≠ 0 i = 1; 2
+# RC = { muestras / |F0| > F_2_5_0.95 }
+# F0 = (SCRes/grlibReg)/(SCResi/grlibResi)
+
+genr F_2_5_095=critical(F, 2, 5, 0.05)
+
+# Nótese que F0 = 24.085 > 5.786 = F_2_5_095, entonces RH0
+# Por lo tanto, no todos los Betai son iguales a cero conjuntamente
+# Lo que implíca que el modelo es globalemnte significativo al 5%
+
+# PARTE f.
+
+# H0) Beta1 + Beta2 = 0 Versus H1) Beta1 + Beta2 ≠ 0
+# RC = { muestras / |t0| > t_5_0.975 }
+# t0 = Betai / desv_betai
+
+# Var(Beta 1 + Beta2) = var_beta1 + var_beta2 + 2 * cov_beta1_beta2
+
+genr var_beta1masbeta2=0.029643193678244+0.0421489160112532-2*0.00815187826151711
+
+genr cota_inf=beta1+beta2-t_5_0975*(var_beta1masbeta2)^0.5
+genr cota_sup=beta1+beta2+t_5_0975*(var_beta1masbeta2)^0.5
+
+# 0 pertenece al intervalo de confianza [ -0.62 ; 0.59 ], entonces NRH0
+# Por lo tanto, existe información estadística para afirmar que 
+# Beta1 = -Beta2 con un 95% de confianza

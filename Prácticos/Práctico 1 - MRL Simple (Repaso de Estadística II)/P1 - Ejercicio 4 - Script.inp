@@ -1,0 +1,25 @@
+# PRÁCTICO 1 - EJERCICIO 4 - Aplicaciones en Gretl
+
+# abro el archivo CAPM.xls
+
+open "C:\Users\dacza_000\Desktop\UdelaR\CCEEA\Semestre 6\Econometria I\Prácticos\Práctico 1\CAPM.xls"
+
+# estimo en modelo para motorola
+
+ols MOTOROLA const MARKET
+
+# llamo las variables alpha_moto y beta_moto
+
+genr alpha_moto=$coeff(const)
+genr beta_moto=$coeff(MARKET)
+
+# estimo el modelo para IBM
+
+ols IBM const MARKET
+
+# llamo las variables alpha_ibm y beta_ibm
+
+genr alpha_ibm=$coeff(const)
+genr beta_ibm=$coeff(MARKET)
+
+

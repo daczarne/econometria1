@@ -1,0 +1,96 @@
+# PRÁCTICO 8 - EJERCICIO 4
+
+open "C:\Users\dacza_000\Desktop\UdelaR\CCEEA\Semestre 6\Econometria I\Prácticos\Práctico 8 - Teoría Asintótica - Wald, ML y RV\Ej4_p8.gdt"
+
+# PARTE 1
+
+MODELO1 <- ols faminc const husage age hushisp hispanic huseduc educ
+
+scalar n=$nobs
+scalar SCR_SR=$ess
+
+# PARTE 2
+
+# El modelo resuta significativo globalmente (test F con p-valor aprox 0)
+
+# Las variables age, huseduc y educ resultan significativas al 1% por test t
+
+# PARTE 3
+
+# Restricciones: 
+
+restrict
+    b[2]=0
+    b[4]=0
+    b[5]=0
+    end restrict
+    
+# La restricción no se rechaza para un alpha del 5%.
+# Por lo tanto, los regresores considerados no son representativos globalemnte
+
+# PARTE 4.
+
+# Para realizar los contrastes asintóticos, primero se debe estimar el modelo
+# restringido (sin las variables)
+
+MODELO2 <- ols faminc const age huseduc educ
+
+scalar SCR_R=$ess
+
+# Todos los test siguen la forma:
+
+# H0) R * Beta = 0 versus H1) R * Beta distinto de cero, con alpha = 5%
+
+# R = [ 0 1 0 1 1 0 ]
+
+# RC = { muestras / e > chi_3_0.95 }
+
+scalar chi = critical(c, 3, 0.05)
+
+# Estadístico ML
+
+scalar ML = n * ((SCR_R-SCR_SR)/SCR_R)
+
+# Estadístico RV
+
+scalar RV = n * log(SCR_R/SCR_SR)
+
+# Estadístico de Wald
+
+scalar W = n * ((SCR_R-SCR_SR)/SCR_SR)
+
+# Ningúno de los estadísticos permiten rechazar H0, por ser todos menores que
+# el valor de la chi
+
+# Conclusión la restricción está activa.
+
+# PARTE 5.
+
+# Tomo una muestra aleatoria de 20 observaciones:
+
+smpl 20 --random
+
+# Vuelvo a estimar los modelos solo con 20 
+
+MODELO1_20 <- ols faminc const husage age hushisp hispanic huseduc educ
+
+scalar SCR_SR_20=$ess
+
+MODELO2_20 <- ols faminc const age huseduc educ
+
+scalar SCR_R_20=$ess
+
+# Recalculo los estadísticos
+
+scalar ML_20 = 20 * ((SCR_R_20-SCR_SR_20)/SCR_R_20)
+
+scalar RV_20 = 20 * log(SCR_R_20/SCR_SR_20)
+
+scalar W_20 = 20 * ((SCR_R_20-SCR_SR_20)/SCR_SR_20)
+
+# PARTE 5
+
+# Las conclusiones se mantienen, a pesar de que los valores de los estadísticos
+# son ahora más pequeños
+
+

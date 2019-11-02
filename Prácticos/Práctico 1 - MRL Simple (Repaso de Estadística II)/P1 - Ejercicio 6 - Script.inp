@@ -1,0 +1,82 @@
+# PRÁCTICO 1 - EJERCICIO 6 - Aplicación en Gretl
+
+# abro el archivo CAPM.xls
+
+open "C:\Users\dacza_000\Desktop\UdelaR\CCEEA\Semestre 6\Econometria I\Prácticos\Práctico 1\CAPM.xls"
+
+# Parte a.
+
+# repico el modelo para IBM
+
+ols IBM const MARKET
+
+# llamo al R2 IBM
+
+genr R_sqrt_IBM=$rsq
+
+# replico el modelo para Motorola
+
+ols MOTOROLA const MARKET
+
+# llamo al R2 motorola
+
+genr R_sqrt_moto=$rsq
+
+# Parte b.
+
+# genero una nueva variable a partir de multiplicar por 10 los valores de las series IBM y MOTOROLA
+
+genr MOTO10=10*MOTOROLA
+genr IBM10=10*IBM
+
+# corro la regresión para IBM10
+
+ols IBM10 const MARKET
+
+# nótese que alpha y beta se han multiplicado por 10
+
+# llamo al R2 IBM10
+
+genr R_sqrt_IBM10=$rsq
+
+# nótese que R_sqrt_IBM y R_sqrt_IBM10 son iguales
+
+# corro la regresión para MOTO10
+
+ols MOTO10 const MARKET
+
+# nótese que alpha y beta se han multiplicado por 10
+
+# llamo al R2 MOTO10
+
+genr R_sqrt_MOTO10=$rsq
+
+# nótese que R_sqrt_MOTOROLA y R_sqrt_MOTO10 son iguales
+
+# Parte c.
+
+# corro la regresión MARKET = gamma + delta * IBM + épsilon
+
+ols MARKET const IBM
+
+# cambio la escala de MARKET
+
+genr MKT10=10*MARKET
+
+# corro la regresión MKT10 = gamma + delta * IBM + épsilon
+
+ols MKT10 const IBM
+
+# nótese que el R2 es el mismo en ambas regresiones
+
+# corro la regresión MARKET = gamma + delta * MOTOROLA + épsilon
+
+ols MARKET const MOTOROLA
+
+# corro la regresión MKT10 = gamma + delta * MOTOROLA + épsilon
+
+ols MKT10 const MOTOROLA
+
+# nótese que el R2 es el mismo en ambas regresiones
+
+

@@ -1,0 +1,92 @@
+# PRÁCTICO 10 - EJERCICIO 5
+
+open "C:\Users\dacza_000\Desktop\UdelaR\CCEEA\Semestre 6\Econometria I\Prácticos\Práctico 10 - Heteroscedasticidad\vacation.gdt"
+
+# PARTE A.
+# a.
+
+KMS <- ols miles const income age kids
+
+genr resi=$uhat
+
+AGE <- gnuplot resi age
+
+#AGE.show
+
+INCOME <- gnuplot resi income
+
+#INCOME.show
+
+# b.
+
+dataset sortby income
+
+smpl ; 67
+
+MENORES <- ols miles const income age kids
+
+scalar Smen=$sigma
+scalar SCRmen=$ess
+
+smpl full
+
+smpl 134 ;
+
+MAYORES <- ols miles const income age kids
+
+scalar Smayo=$sigma
+scalar SCRmayo=$ess
+
+smpl full
+
+# 1. No entiendo cuál es la pregunta
+
+# 2. Contraste GQ
+
+# H0) homo versus H1) hetero
+# H0) sigma_i=sigma para todo i versus H1) no lo es
+
+# RC = { muestras / GQ > F_67_67_095 }
+
+scalar F_67_67_095=critical(f, 67, 67, 0.05)
+
+scalar GQ = SCRmayo/SCRmen
+
+# GQ > F_67_67_095, por lo tanto se rechaza H0. Esto implica que existe evidencia
+# estadística suficiente para afirmar la existencia de hetero asociada a la 
+# variable income
+
+# 3. Contraste de White
+
+# Se debe estimar un modelo cuya variable indpe sea el cuadrado de los residuos
+# del modelo "KMS", y sus variables indep sean las variables originales, sus
+# cuadrados, y sus productos cruzados, descartando cualquier variable repetida 
+# (este no es el caso)
+
+# H0) homo versus H1) hetero
+# H0) beta_2 = ... = beta_9 versus H1) beta_i =! 0 con i=2;...;9
+
+# RC = { muestras / lambda > chi_9_095 }
+
+ols miles const income age kids
+modtest --white
+
+scalar chi_9_095=critical(c, 9, 0.05)
+
+# lambda > chi_9_095 => rechazo H0. esto implica que existe evidencia estadística
+# suficiente para afirmar (al 5% de sig) que la variable income causa hetero
+
+# PARTE B.
+# a. 
+
+KMSrob <- ols miles const income age kids --robust
+
+# 4. Los coefs se mantienen incambiados porque de eso se trata la estimación
+# robusta a hetero (corregir los problemas en las desv tip, no en los coefs).
+
+# 5. No solo se podrían, sino que de hecho eso es justamente lo que se está
+# haciendo. MCO robusto es una estimación en dos etapas:
+# etapa 1: estima MCO y guarda los cuadrados de los residuos
+# etapa 2: estima MCP utilizando una matriz diagonal construida dichos residuos
+
+##### FIN DE LA PROGRAMACIÓN #####

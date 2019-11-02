@@ -1,0 +1,19 @@
+# Comienza el historial 2015-08-10 15:51
+# Registro de las instrucciones de la sesión.  Por favor, tenga en
+# cuenta que probablemente necesitará editar este guion antes
+# de ejecutarlo.
+open C:\Users\dacza_000\Desktop\votes.txt
+logs expendA
+logs expendB
+# store "C:\Users\dacza_000\Desktop\votes.gdt"
+boxplot expendA
+summary expendA
+freq expendA --nbins=5
+freq expendA
+normtest expendA --all
+boxplot expendA
+corr expendA expendB
+summary expendB
+summary expendA
+summary expendA expendB
+# store "C:\Users\dacza_000\Desktop\votes.gdt"

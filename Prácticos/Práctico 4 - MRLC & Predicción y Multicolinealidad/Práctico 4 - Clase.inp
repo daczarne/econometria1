@@ -1,0 +1,11 @@
+open "C:\Users\dacza_000\Desktop\UdelaR\CCEEA\Semestre 6\Econometria I\Prácticos\Práctico 4\Práctico 4.gdt"
+
+ols BUSTRAVL const POP LANDAREA INCOME DENSITY
+
+ols LANDAREA const POP INCOME DENSITY
+
+genr R2=$rsq
+
+genr FIV=1/(1-R2)
+
+ols BUSTRAVL const INCOME DENSITY

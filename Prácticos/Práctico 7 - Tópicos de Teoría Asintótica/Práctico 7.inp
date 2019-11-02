@@ -1,0 +1,335 @@
+# Práctico 7 2015 - Tópicos de Teoría Asintótica
+# Ejercicio 2
+# Crear un conjunto de datos vacío de tamaño 100000
+nulldata 100000 
+
+# Simulamos una variable normal con media 50 y desvío 1.7
+set seed 12345   
+Y = randgen(N,50,1.7)
+
+############
+# 1er caso #
+############
+
+# calcular media, varianza, mínimo y máximo de MEDIAS de
+# 100 muestras de tamaño N 10, 50, 100, 500, 1000, 10000
+
+#se repite para N=10, 50, 100, 500, 1000, 10000
+
+#guardo 100 medias para N=10 en un vector Ybar generado con ceros
+Ybar10 = zeros(100,1)
+# abrir un bucle que se repite 100 veces
+set seed 12345
+    loop i=1..100 --quiet
+    smpl 10 --random 
+    Ybar10[i] = mean(Y) 
+    smpl --full
+    endloop
+scalar Ybarbar10 = mean(Ybar10)
+scalar Ybarvar10 = sd(Ybar10)^2
+scalar Ybarmin10 = min(Ybar10)
+scalar Ybarmax10 = max(Ybar10)
+
+#guardo 100 medias para N=50 en un vector Ybar generado con ceros
+Ybar50 = zeros(100,1)
+# abrir un bucle que se repite 100 veces
+set seed 12345
+    loop i=1..100 --quiet
+    smpl 50 --random 
+    Ybar50[i] = mean(Y) 
+    smpl --full
+    endloop
+scalar Ybarbar50 = mean(Ybar50)
+scalar Ybarvar50 = sd(Ybar50)^2
+scalar Ybarmin50 = min(Ybar50)
+scalar Ybarmax50 = max(Ybar50)
+
+
+#guardo 100 medias para N=100 en un vector Ybar generado con ceros
+Ybar100 = zeros(100,1)
+# abrir un bucle que se repite 100 veces
+set seed 12345
+    loop i=1..100 --quiet
+    smpl 100 --random 
+    Ybar100[i] = mean(Y) 
+    smpl --full
+    endloop
+scalar Ybarbar100 = mean(Ybar100)
+scalar Ybarvar100 = sd(Ybar100)^2
+scalar Ybarmin100 = min(Ybar100)
+scalar Ybarmax100 = max(Ybar100)
+
+#guardo 100 medias para N=500 en un vector Ybar generado con ceros
+Ybar500 = zeros(100,1)
+# abrir un bucle que se repite 100 veces
+set seed 12345
+    loop i=1..100 --quiet
+    smpl 500 --random 
+    Ybar500[i] = mean(Y) 
+    smpl --full
+    endloop
+scalar Ybarbar500 = mean(Ybar500)
+scalar Ybarvar500 = sd(Ybar500)^2
+scalar Ybarmin500 = min(Ybar500)
+scalar Ybarmax500 = max(Ybar500)
+
+#guardo 100 medias para N=1000 en un vector Ybar generado con ceros
+Ybar1000 = zeros(100,1)
+# abrir un bucle que se repite 100 veces
+set seed 12345
+    loop i=1..100 --quiet
+    smpl 1000 --random 
+    Ybar1000[i] = mean(Y) 
+    smpl --full
+    endloop
+scalar Ybarbar1000 = mean(Ybar1000)
+scalar Ybarvar1000 = sd(Ybar1000)^2
+scalar Ybarmin1000 = min(Ybar1000)
+scalar Ybarmax1000 = max(Ybar1000)
+
+#guardo 100 medias para N=10000 en un vector Ybar generado con ceros
+Ybar10000 = zeros(100,1)
+# abrir un bucle que se repite 100 veces
+set seed 12345
+    loop i=1..100 --quiet
+    smpl 10000 --random 
+    Ybar10000[i] = mean(Y) 
+    smpl --full
+    endloop
+scalar Ybarbar10000 = mean(Ybar10000)
+scalar Ybarvar10000 = sd(Ybar10000)^2
+scalar Ybarmin10000 = min(Ybar10000)
+scalar Ybarmax10000 = max(Ybar10000)
+
+
+R1 = zeros(6,4)
+R1[1,] = {Ybarbar10   , Ybarvar10   , Ybarmin10   , Ybarmax10   }
+R1[2,] = {Ybarbar50   , Ybarvar50   , Ybarmin50   , Ybarmax50   }
+R1[3,] = {Ybarbar100  , Ybarvar100  , Ybarmin100  , Ybarmax100  }
+R1[4,] = {Ybarbar500  , Ybarvar500  , Ybarmin500  , Ybarmax500  }
+R1[5,] = {Ybarbar1000 , Ybarvar1000 , Ybarmin1000 , Ybarmax1000 }
+R1[6,] = {Ybarbar10000, Ybarvar10000, Ybarmin10000, Ybarmax10000}
+print R1
+
+
+
+
+############
+# 2do caso #
+############
+
+# calcular media, varianza, mínimo y máximo de PRIMER OBSERVACIÓN de
+# 100 muestras de tamaño N 10, 50, 100, 500, 1000, 10000
+
+#se repite para N=10, 50, 100, 500, 1000, 10000
+
+#guardo 100 observaciones 1 para N=10 en vector Yprim generado con ceros
+Yprim10 = zeros(100,1)
+# abrir un bucle que se repite 100 veces
+set seed 12345
+    loop i=1..100 --quiet
+    smpl 10 --random 
+    Yprim10[i] = Y[1] 
+    smpl --full
+    endloop
+scalar Yprimbar10 = mean(Yprim10)
+scalar Yprimvar10 = sd(Yprim10)^2
+scalar Yprimmin10 = min(Yprim10)
+scalar Yprimmax10 = max(Yprim10)
+
+#guardo 100 observaciones 1 para N=50 en un vector Yprim generado con ceros
+Yprim50 = zeros(100,1)
+# abrir un bucle que se repite 100 veces
+set seed 12345
+    loop i=1..100 --quiet
+    smpl 50 --random 
+    Yprim50[i] = Y[1] 
+    smpl --full
+    endloop
+scalar Yprimbar50 = mean(Yprim50)
+scalar Yprimvar50 = sd(Yprim50)^2
+scalar Yprimmin50 = min(Yprim50)
+scalar Yprimmax50 = max(Yprim50)
+
+
+#guardo 100 observaciones 1 para N=100 en un vector Yprim generado con ceros
+Yprim100 = zeros(100,1)
+# abrir un bucle que se repite 100 veces
+set seed 12345
+    loop i=1..100 --quiet
+    smpl 100 --random 
+    Yprim100[i] = Y[1]
+    smpl --full
+    endloop
+scalar Yprimbar100 = mean(Yprim100)
+scalar Yprimvar100 = sd(Yprim100)^2
+scalar Yprimmin100 = min(Yprim100)
+scalar Yprimmax100 = max(Yprim100)
+
+#guardo 100 observaciones 1 para N=500 en un vector Yprim generado con ceros
+Yprim500 = zeros(100,1)
+# abrir un bucle que se repite 100 veces
+set seed 12345
+    loop i=1..100 --quiet
+    smpl 500 --random 
+    Yprim500[i] = Y[1]
+    smpl --full
+    endloop
+scalar Yprimbar500 = mean(Yprim500)
+scalar Yprimvar500 = sd(Yprim500)^2
+scalar Yprimmin500 = min(Yprim500)
+scalar Yprimmax500 = max(Yprim500)
+
+#guardo 100 observaciones 1 para N=1000 en un vector Yprim generado con ceros
+Yprim1000 = zeros(100,1)
+# abrir un bucle que se repite 100 veces
+set seed 12345
+    loop i=1..100 --quiet
+    smpl 1000 --random 
+    Yprim1000[i] = Y[1]
+    smpl --full
+    endloop
+scalar Yprimbar1000 = mean(Yprim1000)
+scalar Yprimvar1000 = sd(Yprim1000)^2
+scalar Yprimmin1000 = min(Yprim1000)
+scalar Yprimmax1000 = max(Yprim1000)
+
+#guardo 100 observaciones 1 para N=10000 en un vector Yprim generado con ceros
+Yprim10000 = zeros(100,1)
+# abrir un bucle que se repite 100 veces
+set seed 12345
+    loop i=1..100 --quiet
+    smpl 10000 --random 
+    Yprim10000[i] = Y[1] 
+    smpl --full
+    endloop
+scalar Yprimbar10000 = mean(Yprim10000)
+scalar Yprimvar10000 = sd(Yprim10000)^2
+scalar Yprimmin10000 = min(Yprim10000)
+scalar Yprimmax10000 = max(Yprim10000)
+
+
+R2 = zeros(6,4)
+R2[1,] = {Yprimbar10   , Yprimvar10   , Yprimmin10   , Yprimmax10   }
+R2[2,] = {Yprimbar50   , Yprimvar50   , Yprimmin50   , Yprimmax50   }
+R2[3,] = {Yprimbar100  , Yprimvar100  , Yprimmin100  , Yprimmax100  }
+R2[4,] = {Yprimbar500  , Yprimvar500  , Yprimmin500  , Yprimmax500  }
+R2[5,] = {Yprimbar1000 , Yprimvar1000 , Yprimmin1000 , Yprimmax1000 }
+R2[6,] = {Yprimbar10000, Yprimvar10000, Yprimmin10000, Yprimmax10000}
+print R2
+
+
+
+
+
+
+############
+# 3er caso #
+############
+
+# calcular media, varianza, mínimo y máximo del MAXIMO de
+# 100 muestras de tamaño N 10, 50, 100, 500, 1000, 10000
+
+#se repite para N=10, 50, 100, 500, 1000, 10000
+
+#guardo 100 máximos para N=10 en un vector Ymax generado con ceros
+Ymax10 = zeros(100,1)
+# abrir un bucle que se repite 100 veces
+set seed 12345
+    loop i=1..100 --quiet
+    smpl 10 --random 
+    Ymax10[i] = max(Y) 
+    smpl --full
+    endloop
+scalar Ymaxbar10 = mean(Ymax10)
+scalar Ymaxvar10 = sd(Ymax10)^2
+scalar Ymaxmin10 = min(Ymax10)
+scalar Ymaxmax10 = max(Ymax10)
+
+#guardo 100 máximos para N=50 en un vector Ymax generado con ceros
+Ymax50 = zeros(100,1)
+# abrir un bucle que se repite 100 veces
+set seed 12345
+    loop i=1..100 --quiet
+    smpl 50 --random 
+    Ymax50[i] = max(Y) 
+    smpl --full
+    endloop
+scalar Ymaxbar50 = mean(Ymax50)
+scalar Ymaxvar50 = sd(Ymax50)^2
+scalar Ymaxmin50 = min(Ymax50)
+scalar Ymaxmax50 = max(Ymax50)
+
+
+#guardo 100 máximos para N=100 en un vector Ymax generado con ceros
+Ymax100 = zeros(100,1)
+# abrir un bucle que se repite 100 veces
+set seed 12345
+    loop i=1..100 --quiet
+    smpl 100 --random 
+    Ymax100[i] = max(Y) 
+    smpl --full
+    endloop
+scalar Ymaxbar100 = mean(Ymax100)
+scalar Ymaxvar100 = sd(Ymax100)^2
+scalar Ymaxmin100 = min(Ymax100)
+scalar Ymaxmax100 = max(Ymax100)
+
+#guardo 100 máximos para N=500 en un vector Ymax generado con ceros
+Ymax500 = zeros(100,1)
+# abrir un bucle que se repite 100 veces
+set seed 12345
+    loop i=1..100 --quiet
+    smpl 500 --random 
+    Ymax500[i] = max(Y) 
+    smpl --full
+    endloop
+scalar Ymaxbar500 = mean(Ymax500)
+scalar Ymaxvar500 = sd(Ymax500)^2
+scalar Ymaxmin500 = min(Ymax500)
+scalar Ymaxmax500 = max(Ymax500)
+
+#guardo 100 máximos para N=1000 en un vector Ymax generado con ceros
+Ymax1000 = zeros(100,1)
+# abrir un bucle que se repite 100 veces
+set seed 12345
+    loop i=1..100 --quiet
+    smpl 1000 --random 
+    Ymax1000[i] = max(Y) 
+    smpl --full
+    endloop
+scalar Ymaxbar1000 = mean(Ymax1000)
+scalar Ymaxvar1000 = sd(Ymax1000)^2
+scalar Ymaxmin1000 = min(Ymax1000)
+scalar Ymaxmax1000 = max(Ymax1000)
+
+#guardo 100 máximos para N=10000 en un vector Ymax generado con ceros
+Ymax10000 = zeros(100,1)
+# abrir un bucle que se repite 100 veces
+set seed 12345
+    loop i=1..100 --quiet
+    smpl 10000 --random 
+    Ymax10000[i] = max(Y) 
+    smpl --full
+    endloop
+scalar Ymaxbar10000 = mean(Ymax10000)
+scalar Ymaxvar10000 = sd(Ymax10000)^2
+scalar Ymaxmin10000 = min(Ymax10000)
+scalar Ymaxmax10000 = max(Ymax10000)
+
+
+R3 = zeros(6,4)
+R3[1,] = {Ymaxbar10   , Ymaxvar10   , Ymaxmin10   , Ymaxmax10   }
+R3[2,] = {Ymaxbar50   , Ymaxvar50   , Ymaxmin50   , Ymaxmax50   }
+R3[3,] = {Ymaxbar100  , Ymaxvar100  , Ymaxmin100  , Ymaxmax100  }
+R3[4,] = {Ymaxbar500  , Ymaxvar500  , Ymaxmin500  , Ymaxmax500  }
+R3[5,] = {Ymaxbar1000 , Ymaxvar1000 , Ymaxmin1000 , Ymaxmax1000 }
+R3[6,] = {Ymaxbar10000, Ymaxvar10000, Ymaxmin10000, Ymaxmax10000}
+print R3
+
+
+print R1
+print R2
+print R3
+
+

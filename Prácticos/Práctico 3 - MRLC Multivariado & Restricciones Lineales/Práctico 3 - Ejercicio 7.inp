@@ -1,0 +1,115 @@
+# PRÁCTCIO 3 - EJERCICIO 7
+
+open "C:\Users\dacza_000\Desktop\UdelaR\CCEEA\Semestre 6\Econometria I\Prácticos\Práctico 3 - MRLC Multivariado & Restricciones Lineales\caschool_ej7.gdt"
+
+# PARTE 1.
+
+# Ecuación del modelo:
+# enrl_tot_i = Beta1 + Beta2 * teachers_i + Beta3 * calw_pct_i + Beta4 * computer_i + Beta5 * avginc_i + épsilon_i
+
+ols enrl_tot const teachers calw_pct computer avginc
+
+# PARTE 2
+
+# H0) Beta_i = 0 para todo i=2;...5 versus H1) existe Beta_i distinto de cero
+
+# Valor p de la F = 0.00, por lo tanto el modelo es significativo al 1%
+
+# PARTE 3
+
+# Para cada coeficiente se realiza el test:
+
+# H0) Beta_i = 0 versus H1) Beta_i distinto de cero
+
+# En base a los p valores, todos los Beta_i resultaron individualmente sig. al 1%
+
+# Beta1_gorro indica el aumento esperado en la matrícula, ante un aumento de una 
+# unidad en el cociente teachers, ceteris paribus.
+
+# Beta2_gorro indica la caida esperada en la matrícula ante un aumento de un 1% en 
+# el porcentaje de alumnos inscriptos en programas de asistencia pública, ceteris paribus.
+
+# Beta3_gorro indica la caida esperada de la matrícula ante un aumento de un pto
+# en el promedio de computadoras por salón, ceteris paribus.
+
+# Beta4_gorro indica la caida esperada de la matrícula ante un aumento de 
+# 1000 USD del ingreso medio anual, ceteris paribus.
+
+# PARTE 4
+
+# H0) 1,25 * Beta5 - Beta2 = 0 versus H1) 1,25 * Beta5 - Beta2 distinto 0
+
+# RC = { muestras / |e| > t_415_0975 }
+
+genr t=critical(t, 415, 0.025)
+
+# Estadístico E = (1.25*Beta5-Beta2)/sqrt(V(1.25*Beta5-Beta2))
+
+genr Beta5=$coeff(avginc)
+genr Beta2=$coeff(teachers)
+
+genr var_beta2=$stderr(teachers)^2
+genr var_beta5=$stderr(avginc)^2
+genr cov_beta2_beta5=$vcv(teachers, avginc)
+genr var_125beta5_beta2=1.25^2*var_beta5+var_beta2-2.5*cov_beta2_beta5
+
+genr e1 = (1.25*Beta5-Beta2)/sqrt(var_125beta5_beta2)
+
+# |e| = 12.25 > 1.96 = t_415_0975, entonces rechazo H0.
+# Por lo tanto, no existe evidencia estadística para afirmar que la relación
+# sea cierta con un 95% de confianza.
+
+# PARTE 5
+
+# H0) 2.5*Beta3 - Beta2 = 0 versus H1) 2.5*Beta3 - Beta2 != 0
+
+# RC = { muestras / |e| > t_415_0975 }
+
+# Estadístico E = (2.5*Beta3-Beta2)/sqrt(V(2.5*Beta3-Beta2))
+
+genr Beta3=$coeff(calw_pct)
+
+genr var_beta3=$stderr(calw_pct)^2
+genr cov_beta2_beta3=$vcv(teachers, calw_pct)
+genr var_25beta3_beta2=2.5^2*var_beta3+var_beta2-5*cov_beta2_beta3
+
+genr e2 = (2.5*Beta3-Beta2)/sqrt(var_25beta3_beta2)
+
+# |e| = 9.24 > 1.96 = t_415_0975, entonces rechazo H0.
+# Por lo tanto, no existe evidencia estadística para afirmar que la relación
+# sea cierta con un 95% de confianza.
+
+# PARTE 6
+
+# Guardo la SCResiSR
+
+genr SCResi_SR=$ess
+
+# H0) 1.25 * beta5 - beta2 = 0   versus H1) alguna restricción no se cumple
+#     2.5 * beta3 - beta2 = 0  
+
+# RC = { muestras / F0 > F_2_415_095 }
+
+genr F=critical(F, 2, 415, 0.05)
+
+# Genero el estadístico F0
+# F0 = ((SCResi_R-SCResi_SR)/2)/(SCResi_SR)/415
+
+# Intergro todas las restricciones al modelo y estimo el modelo restringido
+# enrl_tot_i = alpha1 + alpha2 * X_i + alpha3 * computer_i + nu_i
+
+genr X=teachers+0.4*calw_pct+0.8*avginc
+
+ols enrl_tot const X computer
+
+# guardo la SCResiR
+
+genr SCResi_R = $ess
+
+# Calculo el estadístico
+
+genr F0 = ((SCResi_R-SCResi_SR)/2)/(SCResi_SR)/415
+
+# F0 = 0.000469 < 3.02 = F_2_415_095, entonces No Rechazo H0
+# Por lo tanto existe información estadística sufieciente para decir que ambas
+# restricciones no se cumplen conjuntamente, con una confianza del 95% 

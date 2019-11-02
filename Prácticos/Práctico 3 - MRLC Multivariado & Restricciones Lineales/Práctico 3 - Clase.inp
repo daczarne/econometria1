@@ -1,0 +1,20 @@
+open "C:\Users\dacza_000\Desktop\UdelaR\CCEEA\Semestre 6\Econometria I\Prácticos\Práctico 3\mlb1.gdt"
+
+ols lsalary const years gamesyr bavg hrunsyr rbisyr
+
+genr beta1=$coeff(const)
+genr beta2=$coeff(years)
+genr beta3=$coeff(gamesyr)
+genr beta4=$coeff(bavg)
+genr beta5=$coeff(hrunsyr)
+genr beta6=$coeff(rbisyr)
+
+genr Rcuad1=$rsq
+genr SCRsr=$ess
+
+ols lsalary const years gamesyr
+
+genr Rcuad2=$rsq
+genr SCRr=$ess
+
+genr F=((SCRr-SCRsr)/3)/(SCRsr/350)

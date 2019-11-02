@@ -1,0 +1,57 @@
+# PRÁTICO 4 - EJERCICIO 5
+
+open "F:\UdelaR\CCEEA\Semestre 6\Econometria I\Prácticos\Práctico 4 - MRLC & Predicción y Multicolinealidad\Práctico 4.gdt"
+
+ols BUSTRAVL const POP LANDAREA INCOME DENSITY
+
+# PARTE a.
+
+# [E1] BUSTRAVL_i = beta1 + beta2 * POP_i + beta3 * LANDAREA_i + beta4 * INCOME_i + beta5 * DENSITY_i + épsilon_i
+
+# PARTE b.
+
+# INCOME: caida esperada de la cantidad demandada de viajes en bus ante un aumento
+# de 1 USD en el ingreso per cápita de los habitantes
+
+# Su p-valor = 0.00 (a dos cifras decimales), por lo que la variable siempre
+# es significativa
+
+# PARTE c.
+
+# El p-valor de la F es aprox cero, por lo que el modelo es globalmente sig. para todo alpha
+
+# La variable LANDAREA no es significativa (al 1, 5 ni 10%), dado que
+# su p-valor es 0.41
+
+# Esto implica que el área de la ciudad no juega un rol preponderante a la 
+# hora de determinar la cantidad demandada de viajes en bus
+
+# PARTE d.
+
+# FIV_LANDAREA = 1/(1-R^2_LANDAREA)
+# Dado que LANDAREA = POP / DENSITY, modelo para calcular el R^2_LANDAREA:
+# LANDAREA_i = alpha1 + alpha2 * POP_i + alpha3 * DENSITY_i + mu_i
+
+# Se intenta detectar la invalidez del supuesto de no multicolinealidad (aprox)
+
+# PARTE e. 
+
+# [E2] LANDAREA_i = alpha1 + alpha2 * POP_i + alpha3 * DENSITY_i + mu_i
+
+ols LANDAREA const POP DENSITY
+
+# PARTE f.
+
+# Dado que [E2] es signifi. global e individualemente para ambos regresores.
+# Se concluye que sí existe una relación lineal entre la variable LANDAREA y
+# las variables POP y DENSITY
+
+# PARTE g. 
+
+genr R2_LANDAREA=$rsq
+
+genr FIV_LANDAREA=1/(1-R2_LANDAREA)
+
+# El valor estimado de la varianza del coeficiente asociado a la variable
+# LANDAREA es 1,69795^2
+

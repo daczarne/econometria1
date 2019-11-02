@@ -1,0 +1,55 @@
+# PRÁCTICO 5 - EJERCICIO 4
+
+open "C:\Users\dacza_000\Desktop\UdelaR\CCEEA\Semestre 6\Econometria I\Prácticos\Práctico 5 - Problemas de especificación\Table_7.4.gdt"
+
+rename Y costo
+rename X prod
+
+summary costo prod
+
+# PARTE a.
+
+Model1 <- ols costo const prod
+
+genr resi=$uhat
+
+RESI <- gnuplot resi costo
+
+RESI.show
+
+# PARTE b. 
+
+# H0) La forma funcional del modelo es correcta Vs. H1) no lo es
+
+# Model2 <- ols costo const prod costo^2 costo^3
+
+# RC = { muestras / F0 > F_2_7_0.95 }
+
+# Estadístico F0 = ((R^2_Model2 - R^2_Model1)/N° de regresores nuevos)/(1 - R^2_Model2)/(n - N° de parámetros Model2)
+
+reset      
+
+genr F_2_7_095=critical(F, 2, 7, 0.05)
+
+# F0 > F_2_6_095, entonces rechazo H0.
+# Esto implica que el Model1 tiene problemas de especificación funcional
+
+# PARTE c. 
+
+# Se propone el modelo:
+
+genr sq_prod = prod^2
+genr cu_prod = prod^3
+
+Model2 <- ols costo const cu_prod
+
+# PARTE d.
+
+# Se realiza el test de RESET de Ramsey para el nuevo modelo
+
+reset
+
+genr F_2_7_095=critical(F, 2, 7, 0.05)
+
+# F0 = 1.5 < 4.7 = F_2_7_095, entonces no rechazo H0
+# El modelo no presenta problemas de especificiación funcional

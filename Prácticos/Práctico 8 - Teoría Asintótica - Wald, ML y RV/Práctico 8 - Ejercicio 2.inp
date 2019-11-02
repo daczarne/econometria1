@@ -1,0 +1,46 @@
+# PRÁCTICO 8 - Teoría Asintótica
+
+# EJERCICIO 2
+
+open "C:\Users\dacza_000\Desktop\UdelaR\CCEEA\Semestre 6\Econometria I\Prácticos\Práctico 8 - Teoría Asintótica - Wald, ML y RV\Ej2_p8"
+
+# Estimo los modelos
+
+ModeloSR <- ols Horas const Edad Educ HijosMenos6 HijosMas6
+
+scalar SCResiSR = $ess
+
+ModeloR <- ols Horas const Edad Educ
+
+scalar SCResiR = $ess
+
+# Someto los modelos al test de restricciones:
+# H0) Beta3 = Beta4 = 0 versus H1) alguno es distinto de cero
+
+# RC = { muestras / e > Chi,2,1-alpha } con alpha = 5% y e = RV, ML, W
+
+scalar chi=critical(c, 2, 0.05)
+
+scalar n = 534
+
+# Construyo el estimador de RV (Razón de Verosimilitudes)
+
+# Si e = RV = n * ln (SCResiR/SCResiSR)
+
+scalar RV=n*ln(SCResiR/SCResiSR)
+
+# Nótese que RV < Chi, por lo que no rechazo H0.
+# Esto implica que las cantidades de hijos no son globalmente significativas
+# al 5% para explicar la cantidad de horas anuales trabajadas asalariadas
+
+# Si e = W = n * ((SCResiR - SCResiSR)/SCResiSR)
+
+scalar W = n * ((SCResiR - SCResiSR)/SCResiSR)
+
+# Nótese que W < Chi, por lo que no rechazo H0. Ídem interpretación.
+
+# Si e = ML = n * ((SCResiR - SCResiSR)/SCResiR)
+
+scalar ML = n * ((SCResiR - SCResiSR)/SCResiR)
+
+# Nótese que ML < Chi, por lo que no rechazo H0. Ídemo interpretación.

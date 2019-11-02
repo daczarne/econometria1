@@ -1,0 +1,12 @@
+# Comienza el historial 2015-08-19 23:04
+# Registro de las instrucciones de la sesión.  Por favor, tenga en
+# cuenta que probablemente necesitará editar este guion antes
+# de ejecutarlo.
+open "C:\Users\dacza_000\Desktop\UdelaR\CCEEA\Semestre 6\Econometria I\Prácticos\Práctico 0 - Breve Introducción al GRETL\votes.gdt"
+
+
+summary voteA prtystrA
+
+summary voteA
+
+summary prtystrAp

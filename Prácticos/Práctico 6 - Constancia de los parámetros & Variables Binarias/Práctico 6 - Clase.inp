@@ -1,0 +1,26 @@
+# PRÁCTICO 6 - EJERCICIO 1
+
+open "C:\Users\dacza_000\Desktop\UdelaR\CCEEA\Semestre 6\Econometria I\Prácticos\Práctico 6 - Constancia de los parámetros & Variables Binarias\ECH.gdt"
+
+# Se pide 1
+
+# PARTE a
+
+genr mean_dpto=mean(gvivienda)
+genr mean_ing_tot=mean(ing_tot)
+
+# PARTE b
+
+genr l_gviv=ln(gvivienda)
+genr l_ing_tot=ln(ing_tot)
+
+# PARTE c
+
+ols l_gviv const l_ing_tot
+
+genr dt=$stderr(l_ing_tot)
+genr elast=$coeff(l_ing_tot)
+
+genr t=critical(t, 20767, 0.05)
+
+ols l_gviv const l_ing_tot
