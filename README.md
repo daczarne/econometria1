@@ -2,7 +2,6 @@
 
 ![archived](https://img.shields.io/badge/lifecycle-archived-red.svg)
 
-
 ![languages](https://img.shields.io/github/languages/count/daczarne/udelar_econometria_1)
 ![top language](https://img.shields.io/github/languages/top/daczarne/udelar_econometria_1)
 
