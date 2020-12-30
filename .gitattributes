@@ -1,1 +1,2 @@
-README.md linguist-detectable
+*.md linguist-detectable
+*.md linguist-documentation=false
