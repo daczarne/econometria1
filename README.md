@@ -1,5 +1,4 @@
-# Econometria 1  
-
+# Econometria 1
 
 ![archived](https://img.shields.io/badge/lifecycle-archived-red.svg)
 
