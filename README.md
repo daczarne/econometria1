@@ -4,7 +4,7 @@
 
 
 ![languages](https://img.shields.io/github/languages/count/daczarne/udelar_econometria_1)
-![top language](https://img.shields.io/github/languages/top/daczarne/udelar_econometria_1) 
+![top language](https://img.shields.io/github/languages/top/daczarne/udelar_econometria_1)
 
 
 ![repo size](https://img.shields.io/github/repo-size/daczarne/udelar_econometria_1)
